@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LingEmbed — Theories Under Pressure: Embedding Linguistic Frameworks in Neural Models</title>
-  <meta name="description" content="LingEmbed, a workshop in the ACL 2027 cycle: what happens when a linguistic framework is operationalized as a computational component inside a neural model, and can rival theories be compared this way?">
-  <meta property="og:title" content="LingEmbed — Theories Under Pressure">
-  <meta property="og:description" content="Embedding linguistic frameworks in neural models. First edition, ACL 2027 workshop cycle.">
+  <title>LingEmbed — Embedding linguistic theory into neural representations</title>
+  <meta name="description" content="LingEmbed: neuro-symbolic methods for embedding formal linguistic theories (categorial grammar, Montague semantics, DisCoCat, dependency grammar, AMR) into neural representations.">
+  <meta property="og:title" content="LingEmbed">
+  <meta property="og:description" content="Embedding linguistic theory into neural representations.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,76 +15,53 @@
 <body>
   <canvas id="bg" aria-hidden="true"></canvas>
 
+  <a class="ws-banner" href="https://stergioscha.github.io/LingEmbed-workshop/"><span class="ws-tag">workshop</span> LingEmbed · <i>Theories Under Pressure</i> at COLING 2027, Macau. Papers due 5 January 2027. Read the call →</a>
   <header class="nav">
     <a class="brand" href="#top"><span class="brand-mark">λ⊗</span> LingEmbed</a>
     <nav>
-      <a href="#about">About</a>
-      <a href="#tracks">Tracks</a>
-      <a href="#contribute">Contribute</a>
-      <a href="#forum">Forum</a>
-      <a href="#dates">Dates</a>
-      <a href="#people">People</a>
-      <a class="btn-gh" href="#cfp">Call for papers</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#theories">Theories</a>
+      <a href="#binding">Binding</a>
+      <a href="#methods">Methods</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="https://stergioscha.github.io/LingEmbed-workshop/">Workshop</a>
+      <a class="btn-gh" href="https://github.com/StergiosCha/LingEmbed" target="_blank" rel="noopener">GitHub ↗</a>
     </nav>
   </header>
 
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">workshop · ACL 2027 cycle · first edition</p>
-      <h1>Theories <span class="grad-sym">Under</span> <span class="grad-neu">Pressure</span></h1>
-      <p class="hero-sub">Embedding Linguistic Frameworks in Neural Models</p>
-      <p class="lede">What happens when a linguistic framework is built into a neural model as a working component? And can rival theories be compared this way?</p>
+      <p class="eyebrow">research programme · neuro-symbolic computational linguistics</p>
+      <h1>Embedding <span class="grad-sym">linguistic theory</span><br>into <span class="grad-neu">neural representations</span></h1>
+      <p class="lede">LingEmbed studies how the structures of formal linguistics (categories, types, λ-terms, dependency arcs, semantic graphs) can be written into vector spaces and neural networks, and how they can be read back out of them.</p>
       <div class="hero-cta">
-        <a class="btn primary" href="#cfp">Call for papers</a>
-        <a class="btn ghost" href="#dates">Important dates</a>
-      </div>
-      <div class="chips">
-        <span class="chip">one day · hybrid</span>
-        <span class="chip">archival &amp; non-archival</span>
-        <span class="chip">reviewing on START</span>
-        <span class="chip">venue &amp; dates: to be announced</span>
+        <a class="btn primary" href="#pipeline">Explore the pipeline</a>
+        <a class="btn ghost" href="https://github.com/StergiosCha/LingEmbed" target="_blank" rel="noopener">View repository</a>
       </div>
       <div class="hero-legend">
-        <span><i class="dot sym"></i>linguistic framework</span>
+        <span><i class="dot sym"></i>symbolic structure</span>
         <span class="arrow">→</span>
-        <span><i class="dot emb"></i>differentiable module</span>
+        <span><i class="dot emb"></i>geometric embedding</span>
         <span class="arrow">→</span>
-        <span><i class="dot neu"></i>tested under data pressure</span>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="block">
-      <div class="block-head">
-        <p class="eyebrow">about · 01</p>
-        <h2>One question, two communities</h2>
-        <p>Neural language models are fluent but theory-blind. They make no explicit commitment to any account of syntax, semantics or pragmatics, and it is hard to tell whether a given linguistic structure does any work inside them. Decades of linguistic theory make exactly this structure explicit: Categorial Grammar, HPSG, Minimalism, Construction Grammar, Dynamic Syntax and type-theoretic semantics.</p>
-        <p>LingEmbed treats a linguistic theory as a <b>callable, parameterised, differentiable module</b> that competes under data pressure. No existing workshop puts this question first.</p>
-      </div>
-      <div class="two-col">
-        <div class="col neu-col">
-          <h3>For NLP</h3>
-          <p>Can structure derived from a theory make models more compositional, more sample-efficient, easier to verify, or easier to interpret?</p>
-        </div>
-        <div class="col sym-col">
-          <h3>For theoretical linguistics</h3>
-          <p>When two frameworks compete in the same network, which one earns its keep, and on which phenomena? This would give theory a large-scale empirical test beyond introspective judgements.</p>
-        </div>
+        <span><i class="dot neu"></i>neural computation</span>
       </div>
     </section>
 
     <!-- PIPELINE -->
-    <section id="frameworks" class="block">
+    <section id="pipeline" class="block">
       <div class="block-head">
-        <p class="eyebrow">interactive · 02</p>
-        <h2>One sentence, six frameworks, one geometry</h2>
-        <p>Pick a framework. The analysis of <em class="mono">every student reads a book</em> is drawn on the left. In the middle, its nodes are placed so that <span class="mono">‖hᵢ − hⱼ‖² = d<sub>tree</sub>(i, j)</span>, which is the geometry a structural probe looks for. On the right, the result is passed through a small neural encoder. Hover a node to follow it through all three stages. This is an illustration of the question, not a proposed method.</p>
+        <p class="eyebrow">interactive · 01</p>
+        <h2>One sentence, five theories, one geometry</h2>
+        <p>Pick a theory. The analysis of <em class="mono">every student reads a book</em> is drawn on the left. In the middle, its nodes are placed so that <span class="mono">‖hᵢ − hⱼ‖² = d<sub>tree</sub>(i, j)</span>, which is the geometry a structural probe looks for. On the right, the embedding is passed through a small neural encoder. Hover a node to follow it through all three stages.</p>
       </div>
+
       <div class="tabs" id="theoryTabs" role="tablist"></div>
+
       <div class="viz-wrap">
-        <svg id="pipelineSvg" viewBox="0 0 1200 480" role="img" aria-label="A sentence analysed in six linguistic frameworks, embedded geometrically and passed to a neural encoder"></svg>
+        <svg id="pipelineSvg" viewBox="0 0 1200 480" role="img" aria-label="Pipeline from symbolic analysis to embedding to neural network"></svg>
       </div>
+
       <div class="info-grid">
         <div class="info-card" id="infoTheory"></div>
         <div class="info-card" id="infoNode"></div>
@@ -92,83 +69,61 @@
       </div>
     </section>
 
-    <!-- TRACKS -->
-    <section id="tracks" class="block">
+    <!-- THEORIES -->
+    <section id="theories" class="block">
       <div class="block-head">
-        <p class="eyebrow">tracks · 03</p>
-        <h2>Four tracks</h2>
+        <p class="eyebrow">scope · 02</p>
+        <h2>Linguistic theories as inductive bias</h2>
+        <p>Each framework commits to a different kind of structure. Each commitment can become a constraint, a target, or an architecture for a neural model.</p>
       </div>
       <div class="cards">
         <article class="card">
-          <div class="card-tag sym">track 1</div>
-          <h3>Grammars and theories as modules</h3>
-          <p>Full or partial implementations of the frameworks above as differentiable, callable components, and schemes for compiling a theory into tensors.</p>
+          <div class="card-tag sym">syntax</div>
+          <h3>Categorial grammar (CCG)</h3>
+          <p>Lexical categories such as <span class="mono">(S\NP)/NP</span> are functions. Derivations correspond to typed function application and composition.</p>
+          <p class="card-neural"><b>Neural reading:</b> categories as typed tensors, with combinators as learned or fixed contractions.</p>
         </article>
         <article class="card">
-          <div class="card-tag emb">track 2</div>
-          <h3>Probing for theory</h3>
-          <p>Tests of whether pretrained models encode the structure a theory predicts (constituency, dependency, type structure, scope), and of how that structure is spread across the representation.</p>
+          <div class="card-tag sym">semantics</div>
+          <h3>Montague &amp; type-theoretic semantics</h3>
+          <p>Meanings are typed λ-terms (<span class="mono">e</span>, <span class="mono">t</span>, <span class="mono">e→t</span>…), and composition is β-reduction. Modern type theories add dependent and subtyped structure.</p>
+          <p class="card-neural"><b>Neural reading:</b> type-respecting embeddings, and logic-aware losses for entailment and quantifier scope.</p>
         </article>
         <article class="card">
-          <div class="card-tag neu">track 3</div>
-          <h3>Theory competition and evaluation</h3>
-          <p>Rival frameworks placed in the same network and measured on which helps where. This includes benchmarks and cognitive tests of whether an embedded theory produces human-like processing, not only a task gain.</p>
+          <div class="card-tag emb">compositional distributional</div>
+          <h3>DisCoCat</h3>
+          <p>Pregroup types fix tensor orders: nouns are vectors in <span class="mono">N</span>, and transitive verbs live in <span class="mono">N⊗S⊗N</span>. Grammar specifies how the tensors are contracted.</p>
+          <p class="card-neural"><b>Neural reading:</b> grammar-shaped tensor networks with an exact diagrammatic semantics.</p>
         </article>
         <article class="card">
-          <div class="card-tag sym">track 4</div>
-          <h3>Enabling resources and negative results</h3>
-          <p>Treebanks, meaning representations, formalisms, and honest reports of what does not work yet.</p>
+          <div class="card-tag sym">syntax</div>
+          <h3>Dependency grammar</h3>
+          <p>Head–dependent arcs labelled <span class="mono">nsubj</span>, <span class="mono">obj</span>, <span class="mono">det</span>. The analysis is a tree over the words themselves.</p>
+          <p class="card-neural"><b>Neural reading:</b> structural probes, graph encoders, and attention constrained by arcs.</p>
         </article>
-      </div>
-    </section>
-
-    <!-- LADDER -->
-    <section id="contribute" class="block">
-      <div class="block-head">
-        <p class="eyebrow">scope · 04</p>
-        <h2>A laddered call: four ways in</h2>
-        <p>A call that asked only for complete framework implementations would draw very few papers, because few groups in any framework can compile a broad-coverage grammar into a differentiable module. Embedding a whole grammar is therefore not an entry requirement. Theoretical linguists can take part without a GPU, and ML researchers can take part without committing to a framework. <b>All four rungs are reviewed as full contributions.</b></p>
-      </div>
-      <div class="ladder">
-        <div class="rung r4"><span class="rung-n">4</span><div><h4>Complete implementations</h4><p>A framework compiled as a whole into a differentiable component. This is what the workshop exists to make more common.</p></div></div>
-        <div class="rung r3"><span class="rung-n">3</span><div><h4>Partial or phenomenon-scoped implementations</h4><p>One construction, one phenomenon, or one fragment of a grammar, built into a model.</p></div></div>
-        <div class="rung r2"><span class="rung-n">2</span><div><h4>Theory-committed probing</h4><p>Nothing is compiled. A named theory's predictions are tested against what a pretrained model encodes.</p></div></div>
-        <div class="rung r1"><span class="rung-n">1</span><div><h4>Enabling resources and negative results</h4><p>Where most of the community already works, and where a first edition can expect most submissions. Negative results are explicitly welcome.</p></div></div>
-      </div>
-    </section>
-
-    <!-- FORUM -->
-    <section id="forum" class="block">
-      <div class="block-head">
-        <p class="eyebrow">format · 05</p>
-        <h2>Papers, plus a shared-task design forum</h2>
-        <p>The workshop has two outputs: a paper programme, and the design of a shared task, built together with the community rather than imposed in advance. <b>There is no shared task in the first edition.</b> The natural task ("compile your framework and compete") cannot be run yet. Broad-coverage implementations are few. A two-month prototype cannot be compared fairly with decades of engineering in another framework. Any measured difference would therefore reflect how mature an implementation is, not how adequate the theory is. A leaderboard whose numbers cannot support the claim they appear to make would damage the very comparison this workshop exists to enable.</p>
-      </div>
-      <div class="two-col">
-        <div class="col emb-col">
-          <h3>The closing forum asks</h3>
-          <ul>
-            <li>What would count as evidence that a theory helps?</li>
-            <li>Which comparisons can be identified, and what must be held fixed across frameworks?</li>
-            <li>Which phenomena already have evaluation data and human processing measures?</li>
-            <li>Which formats are realistic for the community that actually turns up?</li>
-          </ul>
-        </div>
-        <div class="col neu-col">
-          <h3>Short task-design contributions</h3>
-          <p>To keep the forum concrete, the call invites short task-design contributions alongside regular papers. These can be desiderata, pilot studies, candidate evaluation items, or feasibility analyses of earlier shared tasks. They are reviewed like any other submission and seed the discussion.</p>
-          <p class="muted-p"><b>Output:</b> a community blueprint, written up as a co-authored report with every contributor credited. It will set out the task's format, target phenomena, data, metrics and division of labour. The second edition's shared task will be built on it.</p>
-        </div>
+        <article class="card">
+          <div class="card-tag sym">meaning graphs</div>
+          <h3>AMR &amp; frame semantics</h3>
+          <p>Rooted, labelled graphs of predicates and roles, e.g. <span class="mono">read-01 :ARG0 student</span>. Surface words that carry no content are abstracted away.</p>
+          <p class="card-neural"><b>Neural reading:</b> graph embeddings, role binding, and graph-to-text and text-to-graph models.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag neu">cognitive</div>
+          <h3>Construction grammar</h3>
+          <p>Form–meaning pairings at every grain size, from morphemes to idioms to argument-structure constructions.</p>
+          <p class="card-neural"><b>Neural reading:</b> constructions as reusable subspaces or memory slots, tested with minimal pairs.</p>
+        </article>
       </div>
     </section>
 
     <!-- BINDING -->
     <section id="binding" class="block">
       <div class="block-head">
-        <p class="eyebrow">interactive · 06</p>
-        <h2>Theory-to-tensor compilation, in miniature</h2>
-        <p>One of the oldest ways to put structure into vectors is Smolensky's tensor product representation. Each <b>filler</b> (a word) is bound to a <b>role</b> (its position in the framework selected above) with an outer product, and the bindings are summed: <span class="mono">T = Σ fᵢ ⊗ rᵢ</span>. With orthonormal roles, unbinding <span class="mono">T·rₖ</span> returns <span class="mono">fₖ</span> exactly. Turn orthonormality off to see crosstalk. In Categorial Grammar the roles are tree positions, in Construction Grammar they are construction slots, and in Dynamic Syntax they are tree-node addresses.</p>
+        <p class="eyebrow">interactive · 03</p>
+        <h2>Tensor-product binding: structure in a single matrix</h2>
+        <p>Smolensky's tensor product representations bind each <b>filler</b> (a word or concept) to a <b>role</b> (its structural position) with an outer product, then sum the bindings: <span class="mono">T = Σ fᵢ ⊗ rᵢ</span>. If the roles are orthonormal, unbinding <span class="mono">T·rₖ</span> returns <span class="mono">fₖ</span> exactly. Turn orthonormality off to see crosstalk. The fillers and roles come from the theory selected above.</p>
       </div>
+
       <div class="binding">
         <div class="binding-left">
           <h4>Bindings <span class="muted" id="bindCount"></span></h4>
@@ -185,134 +140,78 @@
       </div>
     </section>
 
-    <!-- CFP -->
-    <section id="cfp" class="block">
+    <!-- METHODS -->
+    <section id="methods" class="block">
       <div class="block-head">
-        <p class="eyebrow">call for papers · 07</p>
-        <h2>Submissions</h2>
-        <p>We invite work on any of the four tracks and at any rung of the ladder.</p>
-      </div>
-      <div class="cards">
-        <article class="card"><div class="card-tag sym">archival</div><h3>Long and short papers</h3><p>Original work, published in the workshop proceedings.</p></article>
-        <article class="card"><div class="card-tag emb">non-archival</div><h3>Cross-submissions</h3><p>Work under review or published elsewhere, presented for discussion.</p></article>
-        <article class="card"><div class="card-tag neu">position</div><h3>Position papers</h3><p>Arguments about what embedding a theory should mean, and how theories should be compared.</p></article>
-        <article class="card"><div class="card-tag sym">forum</div><h3>Task-design contributions</h3><p>Short pieces that seed the closing forum: desiderata, pilots, candidate items and feasibility analyses.</p></article>
-      </div>
-      <div class="facts">
-        <div class="kv"><span>reviewing platform</span><span>START</span></div>
-        <div class="kv"><span>submission route</span><span>direct submissions only (no ACL Rolling Review)</span></div>
-        <div class="kv"><span>format and page limits</span><span>announced with the call</span></div>
-        <div class="kv"><span>submission link</span><span>to be announced</span></div>
-      </div>
-    </section>
-
-    <!-- POSITIONING -->
-    <section id="positioning" class="block">
-      <div class="block-head">
-        <p class="eyebrow">context · 08</p>
-        <h2>How LingEmbed relates to neighbouring venues</h2>
-        <p>LingEmbed's object is narrow by design: one operation, in one direction. A theory is compiled into a differentiable component and tested under data pressure, and the results are compared across frameworks.</p>
-      </div>
-      <div class="table-wrap">
-        <table class="pos">
-          <thead><tr><th>Venue</th><th>Its object</th><th>LingEmbed's object</th></tr></thead>
-          <tbody>
-            <tr><td>NALOMA</td><td>logic and machine learning, at the level of inference</td><td>the grammar as a computational component</td></tr>
-            <tr><td>BlackboxNLP</td><td>probing, without commitment to a theory</td><td>probing that tests a named theory's predictions</td></tr>
-            <tr><td>GenBench</td><td>compositional generalisation, measured behaviourally</td><td>whether theory-derived structure is what produces it</td></tr>
-            <tr><td>BriGap, ILFC</td><td>the relation between formal and computational linguistics, in both directions</td><td>one direction, and comparison between frameworks</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- DATES -->
-    <section id="dates" class="block">
-      <div class="block-head">
-        <p class="eyebrow">dates · 09</p>
-        <h2>Important dates</h2>
-        <p>The host conference, venue and dates will be announced here. All deadlines are 23:59 Anywhere on Earth.</p>
-      </div>
-      <div class="dates">
-        <div class="date-row"><span>Call for papers</span><b>TBA</b></div>
-        <div class="date-row"><span>Submission deadline</span><b>TBA</b></div>
-        <div class="date-row"><span>Notification of acceptance</span><b>TBA</b></div>
-        <div class="date-row"><span>Camera-ready</span><b>TBA</b></div>
-        <div class="date-row"><span>Workshop (one day, hybrid)</span><b>TBA</b></div>
-      </div>
-      <p class="note">Invited speaker: to be announced.</p>
-    </section>
-
-    <!-- PEOPLE -->
-    <section id="people" class="block">
-      <div class="block-head">
-        <p class="eyebrow">people · 10</p>
-        <h2>Organisers</h2>
+        <p class="eyebrow">methods · 04</p>
+        <h2>Two directions of travel</h2>
+        <p>Neuro-symbolic work on language runs both ways. Symbolic structure can be <b>injected</b> into a network, or <b>extracted</b> from one that was trained without it.</p>
       </div>
       <div class="two-col">
-        <div class="col person">
-          <h3>Stergios Chatzikyriakidis</h3>
-          <p class="aff">University of Crete</p>
-          <p>Type-theoretic semantics, interactive theorem proving for natural language inference, and neurosymbolic NLP. Program Chair and Local Chair of IWCS 2019. Co-editor of the proceedings of NALOMA III (2022) and of the 4th Natural Logic Meets Machine Learning workshop (2023). Co-chair of PaM 2020. Co-organiser of CoNLI 2017 and of the CSTFRS series (IWCS 2019, ESSLLI 2021).</p>
+        <div class="col sym-col">
+          <h3>Symbolic → neural <span class="muted">(embedding)</span></h3>
+          <ul>
+            <li><b>Tensor product representations</b>: role/filler binding for trees and λ-terms.</li>
+            <li><b>Typed compositional models</b>: grammar-determined tensor orders and contractions (DisCoCat; adjectives as matrices).</li>
+            <li><b>Logic as loss</b>: Logic Tensor Networks and differentiable fuzzy semantics for quantifiers and entailment.</li>
+            <li><b>Structure-aware architectures</b>: tree and graph encoders, and syntax-guided attention masks.</li>
+          </ul>
         </div>
-        <div class="col person">
-          <h3>Emmanuele Chersoni</h3>
-          <p class="aff">The Hong Kong Polytechnic University</p>
-          <p>Semantic and cognitive analysis of language models, and their evaluation against human language-processing data. Organiser of the CMCL workshop series (2019–2022) and of CogALex (2020, 2022, 2024). Workshop Chair at EACL 2025, and Program Chair of PACLIC 2023 and 2025.</p>
+        <div class="col neu-col">
+          <h3>Neural → symbolic <span class="muted">(probing)</span></h3>
+          <ul>
+            <li><b>Structural probes</b>: linear maps under which squared distance recovers parse-tree distance.</li>
+            <li><b>Diagnostic classifiers</b>: decoding categories, types, roles and scope from hidden states.</li>
+            <li><b>Causal interventions</b>: activation patching and interchange interventions on hypothesised variables.</li>
+            <li><b>Behavioural minimal pairs</b>: agreement, NPI licensing, quantifier scope, and inference.</li>
+          </ul>
         </div>
       </div>
 
-      <div class="block-head" style="margin-top:56px">
-        <h2>Program committee</h2>
-        <p>Confirmed so far. The committee is growing as replies arrive and will be balanced for gender, region and career stage.</p>
-      </div>
-      <div class="pc" id="pcGrid">
-        <div><b>Lasha Abzianidze</b><span>natural logic, theorem proving for inference</span></div>
-        <div><b>Maxime Amblard</b><span>formal syntax and semantics, discourse</span></div>
-        <div><b>Marianna Apidianaki</b><span>lexical semantics, interpreting model representations</span></div>
-        <div><b>Giosuè Baggio</b><span>neurolinguistics, semantic processing</span></div>
-        <div><b>Philippe Blache</b><span>syntax, Property Grammars</span></div>
-        <div><b>Cristiano Chesi</b><span>Minimalist syntax and its implementation</span></div>
-        <div><b>Yan Cong</b><span>formal semantics and pragmatics, LLM evaluation</span></div>
-        <div><b>Robin Cooper</b><span>Type Theory with Records</span></div>
-        <div><b>Valeria de Paiva</b><span>logic, category theory, inference</span></div>
-        <div><b>Yu-yin Hsu</b><span>syntax–prosody, experimental syntax</span></div>
-        <div><b>Elisabetta Jezek</b><span>lexical semantics, argument structure</span></div>
-        <div><b>Konstantinos Kogkalidis</b><span>categorial grammar as proof, neurosymbolic parsing</span></div>
-        <div><b>Alessandro Lenci</b><span>distributional semantics, compositionality</span></div>
-        <div><b>Ludovica Pannitto</b><span>usage-based and construction grammar, acquisition</span></div>
-        <div><b>Sandro Pezzelle</b><span>probing and evaluation of (multimodal) LMs</span></div>
-        <div><b>Jakob Prange</b><span>syntactic and semantic representation, parsing</span></div>
-        <div><b>He Zhou</b><span>treebanking, dependency parsing</span></div>
+      <div class="refs">
+        <h4>Background reading</h4>
+        <ol>
+          <li>Smolensky, P. (1990). Tensor product variable binding and the representation of symbolic structures in connectionist systems. <i>Artificial Intelligence</i> 46.</li>
+          <li>Montague, R. (1973). The proper treatment of quantification in ordinary English.</li>
+          <li>Steedman, M. (2000). <i>The Syntactic Process</i>. MIT Press.</li>
+          <li>Coecke, B., Sadrzadeh, M. &amp; Clark, S. (2010). Mathematical foundations for a compositional distributional model of meaning.</li>
+          <li>Baroni, M. &amp; Zamparelli, R. (2010). Nouns are vectors, adjectives are matrices. <i>EMNLP</i>.</li>
+          <li>Banarescu, L. et al. (2013). Abstract Meaning Representation for sembanking. <i>LAW</i>.</li>
+          <li>Serafini, L. &amp; d'Avila Garcez, A. (2016). Logic Tensor Networks.</li>
+          <li>Hewitt, J. &amp; Manning, C. D. (2019). A structural probe for finding syntax in word representations. <i>NAACL</i>.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- INCLUSION -->
-    <section id="inclusion" class="block">
+    <!-- ROADMAP -->
+    <section id="roadmap" class="block">
       <div class="block-head">
-        <p class="eyebrow">participation · 11</p>
-        <h2>Hybrid by default</h2>
-        <p>The organising team spans Europe and East Asia, so hybrid delivery is how it already works.</p>
+        <p class="eyebrow">project · 05</p>
+        <h2>Roadmap</h2>
+        <p>Planned components of the repository. Edit this list in <span class="mono">index.html</span> as the work progresses.</p>
       </div>
-      <div class="cards">
-        <article class="card"><h3>Remote on equal terms</h3><p>Pre-recorded talks, live Q&amp;A blocks timed for several regions, a persistent virtual poster session, captioned keynotes, and low-cost or free virtual participation.</p></article>
-        <article class="card"><h3>Co-authoring the blueprint</h3><p>Task-design contributions are circulated in advance, so remote participants co-author the blueprint on equal terms.</p></article>
-        <article class="card"><h3>Mentoring</h3><p>Light-touch mentoring for first-time student authors, including theoretical linguists who are new to neural modelling.</p></article>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Theory encoders</h4><p>Converters from CCG derivations, λ-terms, UD trees and AMR graphs to a shared role/filler format.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Embedding library</h4><p>TPR, typed-tensor (DisCoCat-style) and tree-metric embeddings, with exact unbinding tests.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Probing suite</h4><p>Structural, type and scope probes for pretrained language models, with control tasks.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Benchmarks</h4><p>Compositional generalisation and inference tasks that compare theory-informed and unconstrained models.</p></div></div>
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="block cite">
-      <h2>Contact</h2>
-      <p>Write to the organisers:
-        <a href="mailto:stergios.chatzikyriakidis@uoc.gr">stergios.chatzikyriakidis@uoc.gr</a> ·
-        <a href="mailto:emmanuele.chersoni@polyu.edu.hk">emmanuele.chersoni@polyu.edu.hk</a></p>
+    <section class="block cite">
+      <h2>Cite</h2>
+<pre class="bib"><code>@misc{lingembed,
+  title  = {LingEmbed: Embedding Linguistic Theory into Neural Representations},
+  author = {TODO: author list},
+  year   = {2026},
+  url    = {https://github.com/StergiosCha/LingEmbed}
+}</code></pre>
     </section>
   </main>
 
   <footer>
-    <span>LingEmbed · Theories Under Pressure · <a href="https://github.com/StergiosCha/LingEmbed">github.com/StergiosCha/LingEmbed</a></span>
-    <span class="muted">The visualisations are computed live in your browser. Encoder weights are random and only illustrative.</span>
+    <span>LingEmbed · <a href="https://github.com/StergiosCha/LingEmbed">github.com/StergiosCha/LingEmbed</a></span>
+    <span class="muted">Visualisations are computed live in your browser. The encoder weights are random and illustrative.</span>
   </footer>
 
   <script src="assets/app.js"></script>
