@@ -48,8 +48,8 @@
   /* ---------- theories: one sentence, five analyses ---------- */
   const THEORIES = {
     ccg: {
-      short: 'CCG', title: 'Combinatory Categorial Grammar', layout: 'constituency',
-      blurb: 'Lexical categories are functions over categories. The derivation is a sequence of forward (>) and backward (<) applications.',
+      short: 'Categorial Grammar', title: 'Combinatory Categorial Grammar', layout: 'constituency',
+      blurb: 'Lexical categories are functions. The derivation is forward (>) and backward (<) application over a typed lexicon.',
       nodes: [
         { id: 'S', label: 'S', sub: '<', parent: null, detail: 'Backward application:  NP   S\\NP  ⇒  S' },
         { id: 'NP1', label: 'NP', sub: '>', parent: 'S', detail: 'Forward application:  NP/N   N  ⇒  NP' },
@@ -62,59 +62,86 @@
         { id: 'book', label: 'book', sub: 'N', parent: 'NP2', word: true, detail: 'Common noun' }
       ]
     },
-    montague: {
-      short: 'Montague', title: 'Montague semantics (typed λ-calculus)', layout: 'constituency',
-      blurb: 'Every node has a semantic type and a λ-term. Composition is function application followed by β-reduction.',
+    hpsg: {
+      short: 'HPSG', title: 'Head-driven Phrase Structure Grammar', layout: 'constituency',
+      blurb: 'Signs are typed feature structures. A few phrase types (head-subject, head-complement, head-specifier) license the tree by unifying valence lists.',
       nodes: [
-        { id: 'S', label: 't', sub: '∀x.∃y…', parent: null, detail: '∀x(student(x) → ∃y(book(y) ∧ read(x,y)))' },
-        { id: 'NP1', label: '(e→t)→t', sub: 'λQ.∀x…', parent: 'S', detail: 'λQ.∀x(student(x) → Q(x))' },
-        { id: 'every', label: 'every', sub: '⟨et,⟨et,t⟩⟩', parent: 'NP1', word: true, detail: 'λP.λQ.∀x(P(x) → Q(x))' },
-        { id: 'student', label: 'student', sub: 'e→t', parent: 'NP1', word: true, detail: 'λx.student(x)' },
-        { id: 'VP', label: 'e→t', sub: 'λx.∃y…', parent: 'S', detail: 'λx.∃y(book(y) ∧ read(x,y))' },
-        { id: 'reads', label: 'reads', sub: 'e→e→t', parent: 'VP', word: true, detail: 'λy.λx.read(x,y), type-shifted to take a quantified object: λ𝒬.λx.𝒬(λy.read(x,y))' },
-        { id: 'NP2', label: '(e→t)→t', sub: 'λQ.∃y…', parent: 'VP', detail: 'λQ.∃y(book(y) ∧ Q(y))' },
-        { id: 'a', label: 'a', sub: '⟨et,⟨et,t⟩⟩', parent: 'NP2', word: true, detail: 'λP.λQ.∃y(P(y) ∧ Q(y))' },
-        { id: 'book', label: 'book', sub: 'e→t', parent: 'NP2', word: true, detail: 'λy.book(y)' }
+        { id: 'S', label: 'S', sub: 'hd-subj-ph', parent: null, detail: '[HEAD verb, SUBJ ⟨⟩, COMPS ⟨⟩]: the head daughter\'s SUBJ requirement is cancelled by the NP' },
+        { id: 'NP1', label: 'NP', sub: 'hd-spr-ph', parent: 'S', detail: '[HEAD noun, SPR ⟨⟩]: the determiner saturates the noun\'s SPR list' },
+        { id: 'every', label: 'every', sub: 'Det', parent: 'NP1', word: true, detail: '[HEAD det, SPEC N′], quantifier on the noun\'s CONT' },
+        { id: 'student', label: 'student', sub: 'N[SPR⟨Det⟩]', parent: 'NP1', word: true, detail: '[HEAD noun, SPR ⟨Det⟩, COMPS ⟨⟩]' },
+        { id: 'VP', label: 'VP', sub: 'hd-comp-ph', parent: 'S', detail: '[HEAD verb, SUBJ ⟨NP⟩, COMPS ⟨⟩]' },
+        { id: 'reads', label: 'reads', sub: 'V[COMPS⟨NP⟩]', parent: 'VP', word: true, detail: '[HEAD verb, SUBJ ⟨NP₁⟩, COMPS ⟨NP₂⟩, CONT read(1, 2)]' },
+        { id: 'NP2', label: 'NP', sub: 'hd-spr-ph', parent: 'VP', detail: '[HEAD noun, SPR ⟨⟩]' },
+        { id: 'a', label: 'a', sub: 'Det', parent: 'NP2', word: true, detail: '[HEAD det, SPEC N′]' },
+        { id: 'book', label: 'book', sub: 'N[SPR⟨Det⟩]', parent: 'NP2', word: true, detail: '[HEAD noun, SPR ⟨Det⟩, COMPS ⟨⟩]' }
       ]
     },
-    discocat: {
-      short: 'DisCoCat', title: 'DisCoCat (pregroup types → tensors)', layout: 'constituency',
-      blurb: 'Pregroup types set the order of each tensor. Grammatical reduction (the "cups") tells you which indices to contract.',
+    minimalism: {
+      short: 'Minimalism', title: 'Minimalist syntax', layout: 'constituency',
+      blurb: 'Structure is built by binary Merge. The subject merges inside vP and moves to Spec,TP, leaving a lower copy (simplified tree).',
       nodes: [
-        { id: 'S', label: 's', sub: 'n·nʳ→1', parent: null, detail: 'Sentence meaning ∈ S: the verb tensor contracted with the subject and object vectors' },
-        { id: 'NP1', label: 'n', sub: 'nˡ·n→1', parent: 'S', detail: 'Noun phrase vector ∈ N' },
-        { id: 'every', label: 'every', sub: 'n·nˡ', parent: 'NP1', word: true, detail: 'Determiner as a matrix N → N (in the simplest models)' },
-        { id: 'student', label: 'student', sub: 'n', parent: 'NP1', word: true, detail: 'Noun vector ∈ N' },
-        { id: 'VP', label: 'nʳ·s', sub: 'nˡ·n→1', parent: 'S', detail: 'Verb phrase ∈ N ⊗ S' },
-        { id: 'reads', label: 'reads', sub: 'nʳ·s·nˡ', parent: 'VP', word: true, detail: 'Transitive verb: order-3 tensor ∈ N ⊗ S ⊗ N' },
-        { id: 'NP2', label: 'n', sub: 'nˡ·n→1', parent: 'VP', detail: 'Noun phrase vector ∈ N' },
-        { id: 'a', label: 'a', sub: 'n·nˡ', parent: 'NP2', word: true, detail: 'Determiner as a matrix N → N' },
-        { id: 'book', label: 'book', sub: 'n', parent: 'NP2', word: true, detail: 'Noun vector ∈ N' }
+        { id: 'TP', label: 'TP', sub: '', parent: null, detail: 'Spec,TP is filled by the moved subject (EPP)' },
+        { id: 'DP1', label: 'DP', sub: '', parent: 'TP', detail: 'Subject DP after movement' },
+        { id: 'every', label: 'every', sub: 'D', parent: 'DP1', word: true, detail: 'D head' },
+        { id: 'student', label: 'student', sub: 'N', parent: 'DP1', word: true, detail: 'N complement of D' },
+        { id: 'Tb', label: 'T′', sub: '', parent: 'TP', detail: 'T′ = Merge(T, vP)' },
+        { id: 'T', label: 'T', sub: '[pres]', parent: 'Tb', detail: 'Tense head carrying present tense, valued on the verb' },
+        { id: 'vP', label: 'vP', sub: '', parent: 'Tb', detail: 'Phase. The external argument is first merged here' },
+        { id: 'copy', label: '⟨DP⟩', sub: 'copy', parent: 'vP', detail: 'Lower copy of the subject (copy theory of movement)' },
+        { id: 'vb', label: 'v′', sub: '', parent: 'vP', detail: 'v′ = Merge(v+V, DP)' },
+        { id: 'reads', label: 'reads', sub: 'v+V', parent: 'vb', word: true, detail: 'V raises to v. v introduces the external θ-role' },
+        { id: 'DP2', label: 'DP', sub: '', parent: 'vb', detail: 'Object DP' },
+        { id: 'a', label: 'a', sub: 'D', parent: 'DP2', word: true, detail: 'D head' },
+        { id: 'book', label: 'book', sub: 'N', parent: 'DP2', word: true, detail: 'N complement of D' }
       ]
     },
-    ud: {
-      short: 'Dependency', title: 'Dependency grammar (UD)', layout: 'dependency',
-      blurb: 'Every node is a word. Labelled arcs go from heads to dependents, and the horizontal position follows word order.',
+    cxg: {
+      short: 'Construction Grammar', title: 'Construction Grammar', layout: 'constituency',
+      blurb: 'Form–meaning pairings at every size. The clause instantiates the transitive construction, whose slots are filled by smaller constructions.',
       nodes: [
-        { id: 'reads', label: 'reads', sub: 'VERB', rel: 'root', pos: 2, parent: null, word: true, detail: 'Root of the clause' },
-        { id: 'student', label: 'student', sub: 'NOUN', rel: 'nsubj', pos: 1, parent: 'reads', word: true, detail: 'nsubj(reads, student)' },
-        { id: 'every', label: 'every', sub: 'DET', rel: 'det', pos: 0, parent: 'student', word: true, detail: 'det(student, every)' },
-        { id: 'book', label: 'book', sub: 'NOUN', rel: 'obj', pos: 4, parent: 'reads', word: true, detail: 'obj(reads, book)' },
-        { id: 'a', label: 'a', sub: 'DET', rel: 'det', pos: 3, parent: 'book', word: true, detail: 'det(book, a)' }
+        { id: 'TR', label: 'Transitive Cxn', sub: '[SBJ V OBJ] ↔ act(x, y)', parent: null, detail: 'Form: [SBJ V OBJ]. Meaning: an agent x acts on a patient y' },
+        { id: 'NP1', label: 'Det-N Cxn', sub: 'quantified', rel: 'SBJ', parent: 'TR', detail: '[Det N] ↔ a quantified referent' },
+        { id: 'every', label: 'every', sub: 'Det', rel: 'Det', parent: 'NP1', word: true, detail: 'Universal quantification' },
+        { id: 'student', label: 'student', sub: 'N', rel: 'N', parent: 'NP1', word: true, detail: 'Noun construction' },
+        { id: 'reads', label: 'reads', sub: 'V', rel: 'V', parent: 'TR', word: true, detail: 'Verb fusing with the transitive construction: reader = agent, read-thing = patient' },
+        { id: 'NP2', label: 'Det-N Cxn', sub: 'indefinite', rel: 'OBJ', parent: 'TR', detail: '[Det N] ↔ an indefinite referent' },
+        { id: 'a', label: 'a', sub: 'Det', rel: 'Det', parent: 'NP2', word: true, detail: 'Indefinite article' },
+        { id: 'book', label: 'book', sub: 'N', rel: 'N', parent: 'NP2', word: true, detail: 'Noun construction' }
       ]
     },
-    amr: {
-      short: 'AMR', title: 'Abstract Meaning Representation', layout: 'graph',
-      blurb: 'A rooted graph of concepts and semantic roles. The indefinite "a" carries no concept of its own and is dropped.',
+    ds: {
+      short: 'Dynamic Syntax', title: 'Dynamic Syntax', layout: 'constituency',
+      blurb: 'The tree grows word by word, left to right. Each node carries a type requirement and an address (↓0 argument, ↓1 functor).',
       nodes: [
-        { id: 'r', label: 'read-01', sub: 'r', rel: 'root', parent: null, word: true, detail: '(r / read-01 :ARG0 (s / student :mod (e / every)) :ARG1 (b / book))' },
-        { id: 's', label: 'student', sub: 's', rel: ':ARG0', parent: 'r', word: true, detail: ':ARG0 is the reader' },
-        { id: 'e', label: 'every', sub: 'e', rel: ':mod', parent: 's', word: true, detail: 'Universal quantification marked with :mod every' },
-        { id: 'b', label: 'book', sub: 'b', rel: ':ARG1', parent: 'r', word: true, detail: ':ARG1 is the thing read' }
+        { id: 'R', label: 'Ty(t)', sub: '◇', parent: null, detail: 'Fo(Read(ε, y, Book(y))(τ, x, Student(x))). All ?Ty(X) requirements are satisfied, so the tree is complete' },
+        { id: 'SU', label: 'Ty(e)', sub: 'τ-term', rel: '↓0', parent: 'R', detail: 'Fo(τ, x, Student(x)): the universal as a τ-term (epsilon calculus)' },
+        { id: 'every', label: 'every', sub: 'Ty(cn→e)', rel: '↓1', parent: 'SU', word: true, detail: 'The determiner is the functor daughter of the subject node' },
+        { id: 'student', label: 'student', sub: 'Ty(cn)', rel: '↓0', parent: 'SU', word: true, detail: 'Fo(x, Student(x))' },
+        { id: 'P', label: 'Ty(e→t)', sub: '', rel: '↓1', parent: 'R', detail: 'Predicate node, built once the verb is parsed' },
+        { id: 'reads', label: 'reads', sub: 'Ty(e→(e→t))', rel: '↓1', parent: 'P', word: true, detail: 'The verb annotates the functor node and projects ?Ty(e) for its object' },
+        { id: 'O', label: 'Ty(e)', sub: 'ε-term', rel: '↓0', parent: 'P', detail: 'Fo(ε, y, Book(y)): the indefinite as an ε-term' },
+        { id: 'a', label: 'a', sub: 'Ty(cn→e)', rel: '↓1', parent: 'O', word: true, detail: 'Indefinite determiner' },
+        { id: 'book', label: 'book', sub: 'Ty(cn)', rel: '↓0', parent: 'O', word: true, detail: 'Fo(y, Book(y))' }
+      ]
+    },
+    mtt: {
+      short: 'Type theory', title: 'Type-theoretic semantics (MTT)', layout: 'constituency',
+      blurb: 'Common nouns are types and quantifiers are Π-typed. Coercive subtyping lets a Student count as a Human, and a Book as Phy•Info.',
+      nodes: [
+        { id: 'S', label: 'Prop', sub: '∀x:Student. ∃y:Book…', parent: null, detail: '∀x:Student. ∃y:Book. read(x, y)' },
+        { id: 'NP1', label: '(Student→Prop)→Prop', sub: '', parent: 'S', detail: 'every(Student)' },
+        { id: 'every', label: 'every', sub: 'ΠA:CN. …', parent: 'NP1', word: true, detail: 'every : ΠA:CN. (A → Prop) → Prop' },
+        { id: 'student', label: 'student', sub: 'Student : CN', parent: 'NP1', word: true, detail: 'Common nouns as types: Student : CN, with Student ≤ Human' },
+        { id: 'VP', label: 'Human→Prop', sub: '', parent: 'S', detail: 'λx:Human. ∃y:Book. read(x, y). It applies to students via Student ≤ Human' },
+        { id: 'reads', label: 'reads', sub: 'Human→Phy•Info→Prop', parent: 'VP', word: true, detail: 'read : Human → Phy•Info → Prop' },
+        { id: 'NP2', label: '(Book→Prop)→Prop', sub: '', parent: 'VP', detail: 'a(Book)' },
+        { id: 'a', label: 'a', sub: 'ΠA:CN. …', parent: 'NP2', word: true, detail: 'a : ΠA:CN. (A → Prop) → Prop' },
+        { id: 'book', label: 'book', sub: 'Book : CN', parent: 'NP2', word: true, detail: 'Book ≤ Phy•Info: a dot-type, so a book can be read and carried' }
       ]
     }
   };
-  const ORDER = ['ccg', 'montague', 'discocat', 'ud', 'amr'];
+  const ORDER = ['ccg', 'hpsg', 'minimalism', 'cxg', 'ds', 'mtt'];
 
   /* ---------- tree layout ---------- */
   function buildTree(th) {
@@ -130,7 +157,7 @@
     } else {
       const leaves = [];
       (function dfs(n) { if (!n.children.length) leaves.push(n); n.children.forEach(dfs); })(root);
-      leaves.forEach((l, i) => { l.xi = leaves.length > 1 ? i / (leaves.length - 1) : 0.5; });
+      leaves.forEach((l, i) => { l.xi = leaves.length > 1 ? i / (leaves.length - 1) : 0.5; l.leafIdx = i; });
       (function post(n) {
         if (n.children.length) { n.children.forEach(post); n.xi = n.children.reduce((s, c) => s + c.xi, 0) / n.children.length; }
       })(root);
@@ -159,7 +186,7 @@
       while (q.length) { const u = q.shift(); adj[u].forEach(v => { if (d[v] < 0) { d[v] = d[u] + 1; q.push(v); } }); }
       return d;
     });
-    return { nodes, byId, root, dist, adj };
+    return { nodes, byId, root, dist, adj, nLeaves: th.layout === 'dependency' ? 0 : nodes.filter(n => !n.children.length).length };
   }
 
   /* ---------- Jacobi eigen-decomposition (symmetric) ---------- */
@@ -230,9 +257,9 @@
   /* ---------- pipeline view ---------- */
   const svg = $('#pipelineSvg');
   const P = {
-    tree: { x: 20, y: 70, w: 370, h: 380 },
-    emb: { x: 415, y: 70, w: 370, h: 380 },
-    neu: { x: 810, y: 70, w: 370, h: 380 }
+    tree: { x: 16, y: 70, w: 478, h: 390 },
+    emb: { x: 510, y: 70, w: 325, h: 390 },
+    neu: { x: 851, y: 70, w: 333, h: 390 }
   };
   let state = { theory: 'ccg', active: 0, paused: false };
   let model = null;
@@ -270,7 +297,7 @@
     const linkLayer = el('g', {}, svg);
 
     // tree
-    const tp = { x: P.tree.x + 40, y: P.tree.y + 30, w: P.tree.w - 80, h: P.tree.h - 80 };
+    const tp = { x: P.tree.x + 52, y: P.tree.y + 34, w: P.tree.w - 104, h: P.tree.h - 110 };
     T.nodes.forEach(n => { n.px = tp.x + n.xi * tp.w; n.py = tp.y + n.yi * tp.h; });
     const gt = el('g', {}, svg);
     T.nodes.forEach(n => {
@@ -290,13 +317,14 @@
       const g = el('g', { class: 't-node' + (n.word ? ' word' : ''), 'data-i': n.idx, transform: `translate(${n.px},${n.py})` }, gt);
       el('circle', { r: 8 }, g);
       const below = !n.children.length || th.layout !== 'constituency';
-      const lab = el('text', { class: 'lab', y: below ? 24 : -14 }, g); lab.textContent = n.label;
-      const sb = el('text', { class: 'sub', y: below ? 38 : -28 }, g); sb.textContent = n.sub;
+      const stag = (below && n.leafIdx !== undefined && T.nLeaves > 3 && n.leafIdx % 2 === 1) ? 26 : 0;
+      const lab = el('text', { class: 'lab', y: below ? 24 + stag : -14 }, g); lab.textContent = n.label;
+      if (n.sub) { const sb = el('text', { class: 'sub', y: below ? 38 + stag : -28 }, g); sb.textContent = n.sub; }
       g.addEventListener('mouseenter', () => setActive(n.idx, true));
     });
 
     // embedding
-    const ep = { x: P.emb.x + 40, y: P.emb.y + 20, w: P.emb.w - 80, h: P.emb.h - 60 };
+    const ep = { x: P.emb.x + 46, y: P.emb.y + 26, w: P.emb.w - 92, h: P.emb.h - 80 };
     const xs = E.X.map(v => v[0] || 0), ys = E.X.map(v => v[1] || 0);
     const span = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys)) || 1;
     const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
@@ -314,7 +342,7 @@
     note.textContent = `exact in ${E.dims}D · top-2 PCs shown (${(E.explained2 * 100).toFixed(0)}% var.)`;
 
     // neural
-    const np = { x: P.neu.x + 36, y: P.neu.y + 20, w: P.neu.w - 72, h: P.neu.h - 70 };
+    const np = { x: P.neu.x + 40, y: P.neu.y + 22, w: P.neu.w - 80, h: P.neu.h - 76 };
     const cols = LAYERS.map((m, l) => np.x + (l / (LAYERS.length - 1)) * np.w);
     const pos = LAYERS.map((m, l) => Array.from({ length: m }, (_, j) => [cols[l], np.y + ((j + 0.5) / m) * np.h]));
     model.npos = pos;

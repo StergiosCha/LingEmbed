@@ -1,62 +1,31 @@
-# LingEmbed
+# LingEmbed — Theories Under Pressure
 
-**Embedding linguistic theory into neural representations.**
+**Embedding Linguistic Frameworks in Neural Models.** A workshop in the ACL 2027 cycle (first edition).
 
-LingEmbed is a neuro-symbolic project about how the structures of formal linguistics can be written into vector spaces and neural networks, and read back out of them. The structures in scope are categorial-grammar categories, typed λ-terms, pregroup/DisCoCat tensors, dependency trees and AMR graphs.
+Website: https://stergioscha.github.io/LingEmbed/
 
-Project website: https://stergioscha.github.io/LingEmbed/ *(after GitHub Pages is enabled, see below)*
+LingEmbed asks what happens when a linguistic framework (Categorial Grammar, HPSG, Minimalism, Construction Grammar, Dynamic Syntax, type-theoretic semantics) is built into a neural model as a callable, differentiable component, and whether rival theories can be compared this way.
 
-## What the website shows
+## Editing the site
 
-| Section | What is computed (in the browser) |
-|---|---|
-| Pipeline | Five analyses of *every student reads a book* (CCG, Montague, DisCoCat, UD, AMR). Each node is placed by classical MDS so that ‖hᵢ − hⱼ‖² = d_tree(i,j), which is the target geometry of a structural probe. The embedding is exact in n−1 dimensions, and the site reports the max error. The result is then passed through a small random-weight tanh encoder, which is illustrative only. |
-| Binding | Tensor-product representations: T = Σ fᵢ ⊗ rᵢ, unbinding T·rₖ, with and without orthonormal roles, so that crosstalk can be seen. |
-| Theories / Methods | Overview of the frameworks and of the two directions: symbolic→neural (embedding) and neural→symbolic (probing). |
+Everything is in `index.html`, so to change dates, the venue, the submission link or the committee, edit the relevant section there:
 
-## Structure
+- `#dates`: important dates (currently TBA)
+- `#cfp`: submission link, format and page limits
+- `#people`: organisers and programme committee
 
-```
-index.html          # single-page site
-assets/style.css    # styling
-assets/app.js       # visualisations (vanilla JS, no build step, no dependencies)
-GEMINI_PROMPT.md    # prompts for generating hero art / an alternative interactive figure with Gemini
-.nojekyll           # serve files as-is on GitHub Pages
-```
+The visualisations are in `assets/app.js` (vanilla JS, no build step). Their numbers are computed live in the browser:
+- an exact tree-metric embedding (classical MDS) of six analyses of one sentence
+- tensor-product binding and unbinding
 
 ## Run locally
 
 ```bash
-python -m http.server 8000
-# open http://localhost:8000
+python -m http.server 8000   # then open http://localhost:8000
 ```
 
-## Deploy on GitHub Pages
+Deployment uses GitHub Pages from `main` / root, with `.nojekyll` included.
 
-1. Push this folder to `main` (commands below).
-2. In the repository, go to **Settings → Pages → Build and deployment → Source: Deploy from a branch**, then choose **Branch: `main` / root**.
-3. The site will be published at `https://stergioscha.github.io/LingEmbed/`.
+## Organisers
 
-```bash
-git init
-git add .
-git commit -m "LingEmbed website"
-git branch -M main
-git remote add origin https://github.com/StergiosCha/LingEmbed.git
-git push -u origin main
-```
-
-## Background reading
-
-- Smolensky (1990), Tensor product variable binding. *Artificial Intelligence* 46.
-- Montague (1973), The proper treatment of quantification in ordinary English.
-- Steedman (2000), *The Syntactic Process*.
-- Coecke, Sadrzadeh & Clark (2010), Mathematical foundations for a compositional distributional model of meaning.
-- Baroni & Zamparelli (2010), Nouns are vectors, adjectives are matrices. *EMNLP*.
-- Banarescu et al. (2013), Abstract Meaning Representation for sembanking.
-- Serafini & d'Avila Garcez (2016), Logic Tensor Networks.
-- Hewitt & Manning (2019), A structural probe for finding syntax in word representations. *NAACL*.
-
-## License
-
-TODO: choose a license (e.g. MIT for code, CC BY 4.0 for text/figures).
+Stergios Chatzikyriakidis (University of Crete) · Emmanuele Chersoni (The Hong Kong Polytechnic University)
