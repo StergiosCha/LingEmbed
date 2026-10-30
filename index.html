@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LingEmbed — Embedding linguistic theory into neural representations</title>
+  <meta name="description" content="LingEmbed: neuro-symbolic methods for embedding formal linguistic theories (categorial grammar, Montague semantics, DisCoCat, dependency grammar, AMR) into neural representations.">
+  <meta property="og:title" content="LingEmbed">
+  <meta property="og:description" content="Embedding linguistic theory into neural representations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <canvas id="bg" aria-hidden="true"></canvas>
+
+  <header class="nav">
+    <a class="brand" href="#top"><span class="brand-mark">λ⊗</span> LingEmbed</a>
+    <nav>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#theories">Theories</a>
+      <a href="#binding">Binding</a>
+      <a href="#methods">Methods</a>
+      <a href="#roadmap">Roadmap</a>
+      <a class="btn-gh" href="https://github.com/StergiosCha/LingEmbed" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">neuro-symbolic computational linguistics</p>
+      <h1>Embedding <span class="grad-sym">linguistic theory</span><br>into <span class="grad-neu">neural representations</span></h1>
+      <p class="lede">LingEmbed studies how the structures of formal linguistics (categories, types, λ-terms, dependency arcs, semantic graphs) can be written into vector spaces and neural networks, and how they can be read back out of them.</p>
+      <div class="hero-cta">
+        <a class="btn primary" href="#pipeline">Explore the pipeline</a>
+        <a class="btn ghost" href="https://github.com/StergiosCha/LingEmbed" target="_blank" rel="noopener">View repository</a>
+      </div>
+      <div class="hero-legend">
+        <span><i class="dot sym"></i>symbolic structure</span>
+        <span class="arrow">→</span>
+        <span><i class="dot emb"></i>geometric embedding</span>
+        <span class="arrow">→</span>
+        <span><i class="dot neu"></i>neural computation</span>
+      </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section id="pipeline" class="block">
+      <div class="block-head">
+        <p class="eyebrow">interactive · 01</p>
+        <h2>One sentence, five theories, one geometry</h2>
+        <p>Pick a theory. The analysis of <em class="mono">every student reads a book</em> is drawn on the left. In the middle, its nodes are placed so that <span class="mono">‖hᵢ − hⱼ‖² = d<sub>tree</sub>(i, j)</span>, which is the geometry a structural probe looks for. On the right, the embedding is passed through a small neural encoder. Hover a node to follow it through all three stages.</p>
+      </div>
+
+      <div class="tabs" id="theoryTabs" role="tablist"></div>
+
+      <div class="viz-wrap">
+        <svg id="pipelineSvg" viewBox="0 0 1200 480" role="img" aria-label="Pipeline from symbolic analysis to embedding to neural network"></svg>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-card" id="infoTheory"></div>
+        <div class="info-card" id="infoNode"></div>
+        <div class="info-card" id="infoGeom"></div>
+      </div>
+    </section>
+
+    <!-- THEORIES -->
+    <section id="theories" class="block">
+      <div class="block-head">
+        <p class="eyebrow">scope · 02</p>
+        <h2>Linguistic theories as inductive bias</h2>
+        <p>Each framework commits to a different kind of structure. Each commitment can become a constraint, a target, or an architecture for a neural model.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="card-tag sym">syntax</div>
+          <h3>Categorial grammar (CCG)</h3>
+          <p>Lexical categories such as <span class="mono">(S\NP)/NP</span> are functions. Derivations correspond to typed function application and composition.</p>
+          <p class="card-neural"><b>Neural reading:</b> categories as typed tensors, with combinators as learned or fixed contractions.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag sym">semantics</div>
+          <h3>Montague &amp; type-theoretic semantics</h3>
+          <p>Meanings are typed λ-terms (<span class="mono">e</span>, <span class="mono">t</span>, <span class="mono">e→t</span>…), and composition is β-reduction. Modern type theories add dependent and subtyped structure.</p>
+          <p class="card-neural"><b>Neural reading:</b> type-respecting embeddings, and logic-aware losses for entailment and quantifier scope.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag emb">compositional distributional</div>
+          <h3>DisCoCat</h3>
+          <p>Pregroup types fix tensor orders: nouns are vectors in <span class="mono">N</span>, and transitive verbs live in <span class="mono">N⊗S⊗N</span>. Grammar specifies how the tensors are contracted.</p>
+          <p class="card-neural"><b>Neural reading:</b> grammar-shaped tensor networks with an exact diagrammatic semantics.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag sym">syntax</div>
+          <h3>Dependency grammar</h3>
+          <p>Head–dependent arcs labelled <span class="mono">nsubj</span>, <span class="mono">obj</span>, <span class="mono">det</span>. The analysis is a tree over the words themselves.</p>
+          <p class="card-neural"><b>Neural reading:</b> structural probes, graph encoders, and attention constrained by arcs.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag sym">meaning graphs</div>
+          <h3>AMR &amp; frame semantics</h3>
+          <p>Rooted, labelled graphs of predicates and roles, e.g. <span class="mono">read-01 :ARG0 student</span>. Surface words that carry no content are abstracted away.</p>
+          <p class="card-neural"><b>Neural reading:</b> graph embeddings, role binding, and graph-to-text and text-to-graph models.</p>
+        </article>
+        <article class="card">
+          <div class="card-tag neu">cognitive</div>
+          <h3>Construction grammar</h3>
+          <p>Form–meaning pairings at every grain size, from morphemes to idioms to argument-structure constructions.</p>
+          <p class="card-neural"><b>Neural reading:</b> constructions as reusable subspaces or memory slots, tested with minimal pairs.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- BINDING -->
+    <section id="binding" class="block">
+      <div class="block-head">
+        <p class="eyebrow">interactive · 03</p>
+        <h2>Tensor-product binding: structure in a single matrix</h2>
+        <p>Smolensky's tensor product representations bind each <b>filler</b> (a word or concept) to a <b>role</b> (its structural position) with an outer product, then sum the bindings: <span class="mono">T = Σ fᵢ ⊗ rᵢ</span>. If the roles are orthonormal, unbinding <span class="mono">T·rₖ</span> returns <span class="mono">fₖ</span> exactly. Turn orthonormality off to see crosstalk. The fillers and roles come from the theory selected above.</p>
+      </div>
+
+      <div class="binding">
+        <div class="binding-left">
+          <h4>Bindings <span class="muted" id="bindCount"></span></h4>
+          <ul class="bind-list" id="bindList"></ul>
+          <label class="toggle"><input type="checkbox" id="orthoToggle" checked> <span>orthonormal roles (Gram–Schmidt)</span></label>
+          <h4>Superposition <span class="mono muted">T ∈ ℝ<sup>6×6</sup></span></h4>
+          <div class="heat" id="heatT"></div>
+        </div>
+        <div class="binding-right">
+          <h4>Unbind a role</h4>
+          <div class="role-btns" id="roleBtns"></div>
+          <div class="unbind" id="unbindOut"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- METHODS -->
+    <section id="methods" class="block">
+      <div class="block-head">
+        <p class="eyebrow">methods · 04</p>
+        <h2>Two directions of travel</h2>
+        <p>Neuro-symbolic work on language runs both ways. Symbolic structure can be <b>injected</b> into a network, or <b>extracted</b> from one that was trained without it.</p>
+      </div>
+      <div class="two-col">
+        <div class="col sym-col">
+          <h3>Symbolic → neural <span class="muted">(embedding)</span></h3>
+          <ul>
+            <li><b>Tensor product representations</b>: role/filler binding for trees and λ-terms.</li>
+            <li><b>Typed compositional models</b>: grammar-determined tensor orders and contractions (DisCoCat; adjectives as matrices).</li>
+            <li><b>Logic as loss</b>: Logic Tensor Networks and differentiable fuzzy semantics for quantifiers and entailment.</li>
+            <li><b>Structure-aware architectures</b>: tree and graph encoders, and syntax-guided attention masks.</li>
+          </ul>
+        </div>
+        <div class="col neu-col">
+          <h3>Neural → symbolic <span class="muted">(probing)</span></h3>
+          <ul>
+            <li><b>Structural probes</b>: linear maps under which squared distance recovers parse-tree distance.</li>
+            <li><b>Diagnostic classifiers</b>: decoding categories, types, roles and scope from hidden states.</li>
+            <li><b>Causal interventions</b>: activation patching and interchange interventions on hypothesised variables.</li>
+            <li><b>Behavioural minimal pairs</b>: agreement, NPI licensing, quantifier scope, and inference.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="refs">
+        <h4>Background reading</h4>
+        <ol>
+          <li>Smolensky, P. (1990). Tensor product variable binding and the representation of symbolic structures in connectionist systems. <i>Artificial Intelligence</i> 46.</li>
+          <li>Montague, R. (1973). The proper treatment of quantification in ordinary English.</li>
+          <li>Steedman, M. (2000). <i>The Syntactic Process</i>. MIT Press.</li>
+          <li>Coecke, B., Sadrzadeh, M. &amp; Clark, S. (2010). Mathematical foundations for a compositional distributional model of meaning.</li>
+          <li>Baroni, M. &amp; Zamparelli, R. (2010). Nouns are vectors, adjectives are matrices. <i>EMNLP</i>.</li>
+          <li>Banarescu, L. et al. (2013). Abstract Meaning Representation for sembanking. <i>LAW</i>.</li>
+          <li>Serafini, L. &amp; d'Avila Garcez, A. (2016). Logic Tensor Networks.</li>
+          <li>Hewitt, J. &amp; Manning, C. D. (2019). A structural probe for finding syntax in word representations. <i>NAACL</i>.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="block">
+      <div class="block-head">
+        <p class="eyebrow">project · 05</p>
+        <h2>Roadmap</h2>
+        <p>Planned components of the repository. Edit this list in <span class="mono">index.html</span> as the work progresses.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Theory encoders</h4><p>Converters from CCG derivations, λ-terms, UD trees and AMR graphs to a shared role/filler format.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Embedding library</h4><p>TPR, typed-tensor (DisCoCat-style) and tree-metric embeddings, with exact unbinding tests.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Probing suite</h4><p>Structural, type and scope probes for pretrained language models, with control tasks.</p></div></div>
+        <div class="tl-item"><span class="tl-dot"></span><div><h4>Benchmarks</h4><p>Compositional generalisation and inference tasks that compare theory-informed and unconstrained models.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block cite">
+      <h2>Cite</h2>
+<pre class="bib"><code>@misc{lingembed,
+  title  = {LingEmbed: Embedding Linguistic Theory into Neural Representations},
+  author = {TODO: author list},
+  year   = {2026},
+  url    = {https://github.com/StergiosCha/LingEmbed}
+}</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <span>LingEmbed · <a href="https://github.com/StergiosCha/LingEmbed">github.com/StergiosCha/LingEmbed</a></span>
+    <span class="muted">Visualisations are computed live in your browser. The encoder weights are random and illustrative.</span>
+  </footer>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
