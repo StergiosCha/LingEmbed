@@ -1,0 +1,916 @@
+{
+  "schema": "lingembed.analysis.v1",
+  "source": {
+    "project": "DS Workbench",
+    "engine": "ds-greek-v1",
+    "adapter": "lingembed-export-v1",
+    "adapter_sha256": "444cb9aeb6e11845064f15788eb015b415726d5531569bb7709fad33cea697d5",
+    "analysis_sha256": "9901e3f5c35ad48cebeef5f666a2def8ed88ec4bdc8271bcf6e2549e52cf67ae",
+    "fingerprints": {
+      "grammar_sha256": "2dab101c6880e6f4610ee37febee6c888052f750c152d66b9726a187442ece7b",
+      "adapter_sha256": "3df053a47dfa9f37031e6923125734a7e06a3308d26df3131041f8b77e5c4ae1"
+    }
+  },
+  "observation": {
+    "text": "ο άνθρωπος περπατάει",
+    "left_context": "",
+    "task": "sentence"
+  },
+  "status": "complete",
+  "supported": true,
+  "complete": true,
+  "tokens": [
+    {
+      "index": 0,
+      "text": "ο",
+      "context": false
+    },
+    {
+      "index": 1,
+      "text": "άνθρωπος",
+      "context": false
+    },
+    {
+      "index": 2,
+      "text": "περπατάει",
+      "context": false
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "stage": "word",
+      "word": "ο",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "ο"
+      ],
+      "native_state": {
+        "pointer": "0*0",
+        "nodes": [
+          {
+            "address": "0",
+            "labels": [
+              "?Ty(t)"
+            ]
+          },
+          {
+            "address": "0*",
+            "labels": [
+              "+DEFINITE",
+              "+FULL-DP",
+              "?</\\0>Ty(t)",
+              "?Ex.Tn(x)",
+              "?Ty(e)",
+              "Case(nom)",
+              "Gender(m)",
+              "Number(sg)",
+              "Person(3)"
+            ]
+          },
+          {
+            "address": "0*0",
+            "labels": [
+              "?Ty(cn)"
+            ]
+          },
+          {
+            "address": "0*1",
+            "labels": [
+              "!",
+              "Fo(λ P:cn. ι(P))",
+              "Ty(cn → e)"
+            ]
+          }
+        ],
+        "pending": [
+          {
+            "address": "0",
+            "requirement": "?Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?</\\0>Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?Ex.Tn(x)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?Ty(e)"
+          },
+          {
+            "address": "0*0",
+            "requirement": "?Ty(cn)"
+          }
+        ],
+        "complete": false
+      },
+      "structures": [
+        {
+          "id": "selected-state",
+          "kind": "ds-address-tree",
+          "root": "0",
+          "nodes": [
+            {
+              "id": "0",
+              "label": "0",
+              "type": "?Ty(t)",
+              "meaning": "",
+              "labels": [
+                "?Ty(t)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*",
+              "label": "0*",
+              "type": "?Ty(e)",
+              "meaning": "",
+              "labels": [
+                "+DEFINITE",
+                "+FULL-DP",
+                "?</\\0>Ty(t)",
+                "?Ex.Tn(x)",
+                "?Ty(e)",
+                "Case(nom)",
+                "Gender(m)",
+                "Number(sg)",
+                "Person(3)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*0",
+              "label": "0*0",
+              "type": "?Ty(cn)",
+              "meaning": "",
+              "labels": [
+                "?Ty(cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*1",
+              "label": "0*1",
+              "type": "Ty(cn → e)",
+              "meaning": "Fo(λ P:cn. ι(P))",
+              "labels": [
+                "!",
+                "Fo(λ P:cn. ι(P))",
+                "Ty(cn → e)"
+              ],
+              "span": null
+            }
+          ],
+          "edges": [
+            {
+              "source": "0",
+              "target": "0*",
+              "role": "*",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*0",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*1",
+              "role": "1",
+              "order": null
+            }
+          ],
+          "metadata": {
+            "pointer": "0*0",
+            "complete": false,
+            "alignment": "No lexical span inferred for semantic nodes",
+            "topology": "Stored addresses, including LINK and unfixed steps; not constituency"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    },
+    {
+      "index": 1,
+      "stage": "word",
+      "word": "άνθρωπος",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "ο",
+        "άνθρωπος"
+      ],
+      "native_state": {
+        "pointer": "0",
+        "nodes": [
+          {
+            "address": "0",
+            "labels": [
+              "?Ty(t)"
+            ]
+          },
+          {
+            "address": "0*",
+            "labels": [
+              "+DEFINITE",
+              "+FULL-DP",
+              "?</\\0>Ty(t)",
+              "?Ex.Tn(x)",
+              "Case(nom)",
+              "Fo(ι x0:e. person(x0))",
+              "Gender(m)",
+              "Number(sg)",
+              "Person(3)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "0*0",
+            "labels": [
+              "Fo((x0, person(x0)))",
+              "Ty(cn)"
+            ]
+          },
+          {
+            "address": "0*00",
+            "labels": [
+              "!",
+              "Fo(x0)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "0*01",
+            "labels": [
+              "!",
+              "Fo(λ x:e. (x, person(x)))",
+              "Ty(e → cn)"
+            ]
+          },
+          {
+            "address": "0*1",
+            "labels": [
+              "!",
+              "Fo(λ P:cn. ι(P))",
+              "Ty(cn → e)"
+            ]
+          }
+        ],
+        "pending": [
+          {
+            "address": "0",
+            "requirement": "?Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?</\\0>Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?Ex.Tn(x)"
+          }
+        ],
+        "complete": false
+      },
+      "structures": [
+        {
+          "id": "selected-state",
+          "kind": "ds-address-tree",
+          "root": "0",
+          "nodes": [
+            {
+              "id": "0",
+              "label": "0",
+              "type": "?Ty(t)",
+              "meaning": "",
+              "labels": [
+                "?Ty(t)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*",
+              "label": "0*",
+              "type": "Ty(e)",
+              "meaning": "Fo(ι x0:e. person(x0))",
+              "labels": [
+                "+DEFINITE",
+                "+FULL-DP",
+                "?</\\0>Ty(t)",
+                "?Ex.Tn(x)",
+                "Case(nom)",
+                "Fo(ι x0:e. person(x0))",
+                "Gender(m)",
+                "Number(sg)",
+                "Person(3)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*0",
+              "label": "0*0",
+              "type": "Ty(cn)",
+              "meaning": "Fo((x0, person(x0)))",
+              "labels": [
+                "Fo((x0, person(x0)))",
+                "Ty(cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*00",
+              "label": "0*00",
+              "type": "Ty(e)",
+              "meaning": "Fo(x0)",
+              "labels": [
+                "!",
+                "Fo(x0)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*01",
+              "label": "0*01",
+              "type": "Ty(e → cn)",
+              "meaning": "Fo(λ x:e. (x, person(x)))",
+              "labels": [
+                "!",
+                "Fo(λ x:e. (x, person(x)))",
+                "Ty(e → cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*1",
+              "label": "0*1",
+              "type": "Ty(cn → e)",
+              "meaning": "Fo(λ P:cn. ι(P))",
+              "labels": [
+                "!",
+                "Fo(λ P:cn. ι(P))",
+                "Ty(cn → e)"
+              ],
+              "span": null
+            }
+          ],
+          "edges": [
+            {
+              "source": "0",
+              "target": "0*",
+              "role": "*",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*0",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0*0",
+              "target": "0*00",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0*0",
+              "target": "0*01",
+              "role": "1",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*1",
+              "role": "1",
+              "order": null
+            }
+          ],
+          "metadata": {
+            "pointer": "0",
+            "complete": false,
+            "alignment": "No lexical span inferred for semantic nodes",
+            "topology": "Stored addresses, including LINK and unfixed steps; not constituency"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    },
+    {
+      "index": 2,
+      "stage": "word",
+      "word": "περπατάει",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "ο",
+        "άνθρωπος",
+        "περπατάει"
+      ],
+      "native_state": {
+        "pointer": "0",
+        "nodes": [
+          {
+            "address": "0",
+            "labels": [
+              "+VERB",
+              "?Ty(t)",
+              "Mood(Ind)"
+            ]
+          },
+          {
+            "address": "0*",
+            "labels": [
+              "+DEFINITE",
+              "+FULL-DP",
+              "?</\\0>Ty(t)",
+              "?Ex.Tn(x)",
+              "Case(nom)",
+              "Fo(ι x0:e. person(x0))",
+              "Gender(m)",
+              "Number(sg)",
+              "Person(3)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "0*0",
+            "labels": [
+              "Fo((x0, person(x0)))",
+              "Ty(cn)"
+            ]
+          },
+          {
+            "address": "0*00",
+            "labels": [
+              "!",
+              "Fo(x0)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "0*01",
+            "labels": [
+              "!",
+              "Fo(λ x:e. (x, person(x)))",
+              "Ty(e → cn)"
+            ]
+          },
+          {
+            "address": "0*1",
+            "labels": [
+              "!",
+              "Fo(λ P:cn. ι(P))",
+              "Ty(cn → e)"
+            ]
+          },
+          {
+            "address": "00",
+            "labels": [
+              "?Ex.Fo(META)",
+              "Fo(U_pro)",
+              "Number(sg)",
+              "Person(3)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "01",
+            "labels": [
+              "Fo(λ x:e. walk(x))",
+              "Ty(e → t)"
+            ]
+          }
+        ],
+        "pending": [
+          {
+            "address": "0",
+            "requirement": "?Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?</\\0>Ty(t)"
+          },
+          {
+            "address": "0*",
+            "requirement": "?Ex.Tn(x)"
+          },
+          {
+            "address": "00",
+            "requirement": "?Ex.Fo(META)"
+          }
+        ],
+        "complete": false
+      },
+      "structures": [
+        {
+          "id": "selected-state",
+          "kind": "ds-address-tree",
+          "root": "0",
+          "nodes": [
+            {
+              "id": "0",
+              "label": "0",
+              "type": "?Ty(t)",
+              "meaning": "",
+              "labels": [
+                "+VERB",
+                "?Ty(t)",
+                "Mood(Ind)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*",
+              "label": "0*",
+              "type": "Ty(e)",
+              "meaning": "Fo(ι x0:e. person(x0))",
+              "labels": [
+                "+DEFINITE",
+                "+FULL-DP",
+                "?</\\0>Ty(t)",
+                "?Ex.Tn(x)",
+                "Case(nom)",
+                "Fo(ι x0:e. person(x0))",
+                "Gender(m)",
+                "Number(sg)",
+                "Person(3)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*0",
+              "label": "0*0",
+              "type": "Ty(cn)",
+              "meaning": "Fo((x0, person(x0)))",
+              "labels": [
+                "Fo((x0, person(x0)))",
+                "Ty(cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*00",
+              "label": "0*00",
+              "type": "Ty(e)",
+              "meaning": "Fo(x0)",
+              "labels": [
+                "!",
+                "Fo(x0)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*01",
+              "label": "0*01",
+              "type": "Ty(e → cn)",
+              "meaning": "Fo(λ x:e. (x, person(x)))",
+              "labels": [
+                "!",
+                "Fo(λ x:e. (x, person(x)))",
+                "Ty(e → cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0*1",
+              "label": "0*1",
+              "type": "Ty(cn → e)",
+              "meaning": "Fo(λ P:cn. ι(P))",
+              "labels": [
+                "!",
+                "Fo(λ P:cn. ι(P))",
+                "Ty(cn → e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "00",
+              "label": "00",
+              "type": "Ty(e)",
+              "meaning": "Fo(U_pro)",
+              "labels": [
+                "?Ex.Fo(META)",
+                "Fo(U_pro)",
+                "Number(sg)",
+                "Person(3)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "01",
+              "label": "01",
+              "type": "Ty(e → t)",
+              "meaning": "Fo(λ x:e. walk(x))",
+              "labels": [
+                "Fo(λ x:e. walk(x))",
+                "Ty(e → t)"
+              ],
+              "span": null
+            }
+          ],
+          "edges": [
+            {
+              "source": "0",
+              "target": "0*",
+              "role": "*",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*0",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0*0",
+              "target": "0*00",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0*0",
+              "target": "0*01",
+              "role": "1",
+              "order": null
+            },
+            {
+              "source": "0*",
+              "target": "0*1",
+              "role": "1",
+              "order": null
+            },
+            {
+              "source": "0",
+              "target": "00",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "0",
+              "target": "01",
+              "role": "1",
+              "order": null
+            }
+          ],
+          "metadata": {
+            "pointer": "0",
+            "complete": false,
+            "alignment": "No lexical span inferred for semantic nodes",
+            "topology": "Stored addresses, including LINK and unfixed steps; not constituency"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    },
+    {
+      "index": 3,
+      "stage": "completion",
+      "word": "",
+      "context": false,
+      "accepted": null,
+      "observed": [
+        "ο",
+        "άνθρωπος",
+        "περπατάει"
+      ],
+      "native_state": {
+        "pointer": "0",
+        "nodes": [
+          {
+            "address": "0",
+            "labels": [
+              "+VERB",
+              "Fo(walk(ι x0:e. person(x0)))",
+              "Mood(Ind)",
+              "Ty(t)"
+            ]
+          },
+          {
+            "address": "00",
+            "labels": [
+              "+DEFINITE",
+              "+FULL-DP",
+              "Case(nom)",
+              "Fo(ι x0:e. person(x0))",
+              "Gender(m)",
+              "Number(sg)",
+              "Person(3)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "000",
+            "labels": [
+              "Fo((x0, person(x0)))",
+              "Ty(cn)"
+            ]
+          },
+          {
+            "address": "0000",
+            "labels": [
+              "!",
+              "Fo(x0)",
+              "Ty(e)"
+            ]
+          },
+          {
+            "address": "0001",
+            "labels": [
+              "!",
+              "Fo(λ x:e. (x, person(x)))",
+              "Ty(e → cn)"
+            ]
+          },
+          {
+            "address": "001",
+            "labels": [
+              "!",
+              "Fo(λ P:cn. ι(P))",
+              "Ty(cn → e)"
+            ]
+          },
+          {
+            "address": "01",
+            "labels": [
+              "Fo(λ x:e. walk(x))",
+              "Ty(e → t)"
+            ]
+          }
+        ],
+        "pending": [],
+        "complete": true
+      },
+      "structures": [
+        {
+          "id": "selected-state",
+          "kind": "ds-address-tree",
+          "root": "0",
+          "nodes": [
+            {
+              "id": "0",
+              "label": "0",
+              "type": "Ty(t)",
+              "meaning": "Fo(walk(ι x0:e. person(x0)))",
+              "labels": [
+                "+VERB",
+                "Fo(walk(ι x0:e. person(x0)))",
+                "Mood(Ind)",
+                "Ty(t)"
+              ],
+              "span": null
+            },
+            {
+              "id": "00",
+              "label": "00",
+              "type": "Ty(e)",
+              "meaning": "Fo(ι x0:e. person(x0))",
+              "labels": [
+                "+DEFINITE",
+                "+FULL-DP",
+                "Case(nom)",
+                "Fo(ι x0:e. person(x0))",
+                "Gender(m)",
+                "Number(sg)",
+                "Person(3)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "000",
+              "label": "000",
+              "type": "Ty(cn)",
+              "meaning": "Fo((x0, person(x0)))",
+              "labels": [
+                "Fo((x0, person(x0)))",
+                "Ty(cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0000",
+              "label": "0000",
+              "type": "Ty(e)",
+              "meaning": "Fo(x0)",
+              "labels": [
+                "!",
+                "Fo(x0)",
+                "Ty(e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "0001",
+              "label": "0001",
+              "type": "Ty(e → cn)",
+              "meaning": "Fo(λ x:e. (x, person(x)))",
+              "labels": [
+                "!",
+                "Fo(λ x:e. (x, person(x)))",
+                "Ty(e → cn)"
+              ],
+              "span": null
+            },
+            {
+              "id": "001",
+              "label": "001",
+              "type": "Ty(cn → e)",
+              "meaning": "Fo(λ P:cn. ι(P))",
+              "labels": [
+                "!",
+                "Fo(λ P:cn. ι(P))",
+                "Ty(cn → e)"
+              ],
+              "span": null
+            },
+            {
+              "id": "01",
+              "label": "01",
+              "type": "Ty(e → t)",
+              "meaning": "Fo(λ x:e. walk(x))",
+              "labels": [
+                "Fo(λ x:e. walk(x))",
+                "Ty(e → t)"
+              ],
+              "span": null
+            }
+          ],
+          "edges": [
+            {
+              "source": "0",
+              "target": "00",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "00",
+              "target": "000",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "000",
+              "target": "0000",
+              "role": "0",
+              "order": null
+            },
+            {
+              "source": "000",
+              "target": "0001",
+              "role": "1",
+              "order": null
+            },
+            {
+              "source": "00",
+              "target": "001",
+              "role": "1",
+              "order": null
+            },
+            {
+              "source": "0",
+              "target": "01",
+              "role": "1",
+              "order": null
+            }
+          ],
+          "metadata": {
+            "pointer": "0",
+            "complete": true,
+            "alignment": "No lexical span inferred for semantic nodes",
+            "topology": "Stored addresses, including LINK and unfixed steps; not constituency"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    }
+  ],
+  "projection": {
+    "preserves": [
+      "selected native tree: addresses, all label strings, pointer and pending requirements",
+      "recorded observed-word states",
+      "separate post-input completion state when changed"
+    ],
+    "omits": [
+      "alternative search paths",
+      "lexical action programs",
+      "executable semantic objects"
+    ],
+    "selection": "Native first-success path; semantic nodes have no invented word alignment",
+    "verification": "Copied native snapshots; no reparse or future-state projection"
+  },
+  "scope": "Native symbolic trace and explicit encoding projection; not neural or human evidence"
+}

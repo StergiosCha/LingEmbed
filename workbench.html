@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workbench traces · LingEmbed</title>
+  <link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/workbench.css">
+  <script src="assets/bridge-core.js" defer></script><script src="assets/workbench.js" defer></script>
+</head>
+<body>
+  <header class="nav"><a class="brand" href="index.html"><span class="brand-mark">λ⊗</span> LingEmbed</a><nav><a href="index.html">Project overview</a><a class="btn-gh" href="https://github.com/StergiosCha/LingEmbed">Source ↗</a></nav></header>
+  <main>
+    <section class="block trace-intro">
+      <p class="eyebrow">DS WORKBENCH × LINGEMBED</p><h1>From a real parse<br>to an explicit representation</h1>
+      <p class="lede">Replay a native analysis one word at a time. Inspect what a tree geometry preserves, then test recovery and interference in a role–filler encoding.</p>
+      <div class="import-controls">
+        <label class="btn primary">Import workbench JSON<input id="import-file" type="file" accept=".json,application/json"></label>
+        <button class="btn ghost" data-example="ds-english">English DS example</button>
+        <button class="btn ghost" data-example="ccg-english">CCG example</button>
+        <button class="btn ghost" data-example="ds-greek">Greek DS example</button>
+      </div>
+      <p id="import-status" role="status">Import an analysis, open one from the workbench, or load a recorded example.</p>
+      <p class="muted">Imported analyses stay in this browser. Examples are recorded parser outputs. These diagnostics contain no trained neural model or human measurements.</p>
+    </section>
+    <section id="trace" class="block" hidden>
+      <div class="block-head"><p class="eyebrow" id="engine"></p><h2 id="sentence"></h2><p id="coverage"></p></div>
+      <div id="tokens" class="token-strip" aria-label="Native token sequence"></div>
+      <div class="replay-controls">
+        <button id="previous" class="btn ghost">← Previous</button><button id="play" class="btn ghost">Play replay</button><button id="next" class="btn ghost">Next →</button>
+        <label>Recorded state <input id="frame" type="range" min="0" value="0"></label>
+      </div>
+      <p id="prefix" class="prefix" aria-live="polite"></p>
+      <label id="alternative-label">Exported analysis <select id="alternative"></select></label><p id="alternatives-note" class="muted"></p>
+      <div id="empty-state" class="card" hidden></div>
+      <div id="structure-panels" class="trace-grid">
+        <article class="card native-card"><div class="card-tag sym">native structure</div><h3 id="structure-kind"></h3><p id="structure-note" class="muted"></p>
+          <div class="tree-scroll"><svg id="native-tree" role="img" aria-label="Native analysis tree"></svg></div>
+          <h4>Selected node</h4><pre id="node-detail"></pre>
+        </article>
+        <article class="card"><div class="card-tag emb">encoding diagnostics</div><h3>What survives the encoding?</h3>
+          <h4>Tree geometry</h4><p id="geometry-result"></p><p class="muted">One coordinate per edge: ‖hᵢ − hⱼ‖² = d_tree(i,j). The matrix shows full tree distances. Types, meanings and edge labels are absent from this geometry.</p>
+          <div class="matrix-scroll"><table id="distance-matrix" aria-label="Tree distances"></table></div>
+          <h4>Role–filler recovery</h4><label>Shared role component ρ <input id="overlap" type="range" min="0" max="1" step="0.25" value="0"><output id="overlap-value">0</output></label>
+          <p id="binding-result" aria-live="polite"></p>
+          <p class="muted">The same categorical fillers and decoder are used in every condition. The role dot product is ρ between different nodes. The codebook contains complete node and outgoing-edge records; it is supplied to the decoder.</p>
+          <div class="matrix-scroll"><table id="sweep"><thead><tr><th>ρ</th><th>Max vector error</th><th>Unique recovery</th><th>Tied queries</th></tr></thead><tbody></tbody></table></div>
+          <p class="muted">Overlap can distort vectors without changing the decoded record. At ρ = 1, multiple roles become indistinguishable. This is a binding diagnostic, not a fitted model of memory.</p>
+          <button id="download-diagnostic" class="btn ghost">Download encoding check</button>
+        </article>
+      </div>
+      <details open><summary>What this export preserves and omits</summary><div id="projection"></div></details>
+      <details><summary>Recorded native state</summary><pre id="native-state"></pre></details>
+      <details><summary>Source and version information</summary><pre id="provenance"></pre></details>
+    </section>
+  </main>
+  <footer><span>Native structures · Explicit projections · Reproducible checks</span><a href="index.html">LingEmbed overview ↗</a></footer>
+</body></html>

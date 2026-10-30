@@ -1,0 +1,460 @@
+{
+  "schema": "lingembed.analysis.v1",
+  "source": {
+    "project": "DS Workbench",
+    "engine": "ccg-incremental-v1",
+    "adapter": "lingembed-export-v1",
+    "adapter_sha256": "444cb9aeb6e11845064f15788eb015b415726d5531569bb7709fad33cea697d5",
+    "analysis_sha256": "2c7226c437fc4db4bb01a7e2ef8c836970dff2335df28f2c7fccbbf9053a5f2b",
+    "fingerprints": {
+      "lexicon_sha256": "5be98a1a271dbff183ce87ed05c606df4d3d66b9a2cd509f1be5cbb612fa330b",
+      "implementation_sha256": "6f0e85c8cd30a5e28244bfa630faf51f0362670efec948c767ee6a3d4ca20f8e"
+    }
+  },
+  "observation": {
+    "text": "John likes Mary",
+    "left_context": "",
+    "task": "sentence"
+  },
+  "status": "complete",
+  "supported": true,
+  "complete": true,
+  "tokens": [
+    {
+      "index": 0,
+      "text": "john",
+      "context": false
+    },
+    {
+      "index": 1,
+      "text": "likes",
+      "context": false
+    },
+    {
+      "index": 2,
+      "text": "mary",
+      "context": false
+    }
+  ],
+  "frames": [
+    {
+      "index": 0,
+      "stage": "word",
+      "word": "john",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "john"
+      ],
+      "native_state": {
+        "observed": [
+          "john"
+        ],
+        "categories": [
+          "(S/(S\\NP))",
+          "NP"
+        ],
+        "complete": false,
+        "chart_cells": {
+          "0:1": [
+            "(S/(S\\NP))",
+            "NP"
+          ]
+        },
+        "limited": false
+      },
+      "structures": [
+        {
+          "id": "derivation-0",
+          "kind": "ccg-derivation",
+          "root": "r",
+          "nodes": [
+            {
+              "id": "r",
+              "label": "NP",
+              "type": "NP",
+              "meaning": "john",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            }
+          ],
+          "edges": [],
+          "metadata": {
+            "words": [
+              "john"
+            ],
+            "alignment": "Half-open native token spans"
+          }
+        },
+        {
+          "id": "derivation-1",
+          "kind": "ccg-derivation",
+          "root": "r",
+          "nodes": [
+            {
+              "id": "r",
+              "label": "(S/(S\\NP))",
+              "type": "(S/(S\\NP))",
+              "meaning": "λf.(f john)",
+              "labels": [
+                ">T"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            },
+            {
+              "id": "r.0",
+              "label": "NP",
+              "type": "NP",
+              "meaning": "john",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "source": "r",
+              "target": "r.0",
+              "role": ">T",
+              "order": 0
+            }
+          ],
+          "metadata": {
+            "words": [
+              "john"
+            ],
+            "alignment": "Half-open native token spans"
+          }
+        }
+      ],
+      "available_structures": 2,
+      "omitted_structures": 0
+    },
+    {
+      "index": 1,
+      "stage": "word",
+      "word": "likes",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "john",
+        "likes"
+      ],
+      "native_state": {
+        "observed": [
+          "john",
+          "likes"
+        ],
+        "categories": [
+          "(S/NP)"
+        ],
+        "complete": false,
+        "chart_cells": {
+          "0:1": [
+            "(S/(S\\NP))",
+            "NP"
+          ],
+          "1:2": [
+            "((S\\NP)/NP)"
+          ],
+          "0:2": [
+            "(S/NP)"
+          ]
+        },
+        "limited": false
+      },
+      "structures": [
+        {
+          "id": "derivation-0",
+          "kind": "ccg-derivation",
+          "root": "r",
+          "nodes": [
+            {
+              "id": "r",
+              "label": "(S/NP)",
+              "type": "(S/NP)",
+              "meaning": "λz.((like john) z)",
+              "labels": [
+                ">B"
+              ],
+              "span": [
+                0,
+                2
+              ]
+            },
+            {
+              "id": "r.0",
+              "label": "(S/(S\\NP))",
+              "type": "(S/(S\\NP))",
+              "meaning": "λf.(f john)",
+              "labels": [
+                ">T"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            },
+            {
+              "id": "r.0.0",
+              "label": "NP",
+              "type": "NP",
+              "meaning": "john",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            },
+            {
+              "id": "r.1",
+              "label": "((S\\NP)/NP)",
+              "type": "((S\\NP)/NP)",
+              "meaning": "λo.λs.((like s) o)",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                1,
+                2
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "source": "r",
+              "target": "r.0",
+              "role": ">B",
+              "order": 0
+            },
+            {
+              "source": "r.0",
+              "target": "r.0.0",
+              "role": ">T",
+              "order": 0
+            },
+            {
+              "source": "r",
+              "target": "r.1",
+              "role": ">B",
+              "order": 1
+            }
+          ],
+          "metadata": {
+            "words": [
+              "john",
+              "likes"
+            ],
+            "alignment": "Half-open native token spans"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    },
+    {
+      "index": 2,
+      "stage": "word",
+      "word": "mary",
+      "context": false,
+      "accepted": true,
+      "observed": [
+        "john",
+        "likes",
+        "mary"
+      ],
+      "native_state": {
+        "observed": [
+          "john",
+          "likes",
+          "mary"
+        ],
+        "categories": [
+          "S"
+        ],
+        "complete": true,
+        "chart_cells": {
+          "0:1": [
+            "(S/(S\\NP))",
+            "NP"
+          ],
+          "1:2": [
+            "((S\\NP)/NP)"
+          ],
+          "0:2": [
+            "(S/NP)"
+          ],
+          "2:3": [
+            "(S/(S\\NP))",
+            "NP"
+          ],
+          "1:3": [
+            "(S\\NP)"
+          ],
+          "0:3": [
+            "S"
+          ]
+        },
+        "limited": false
+      },
+      "structures": [
+        {
+          "id": "derivation-0",
+          "kind": "ccg-derivation",
+          "root": "r",
+          "nodes": [
+            {
+              "id": "r",
+              "label": "S",
+              "type": "S",
+              "meaning": "((like john) mary)",
+              "labels": [
+                ">"
+              ],
+              "span": [
+                0,
+                3
+              ]
+            },
+            {
+              "id": "r.0",
+              "label": "(S/NP)",
+              "type": "(S/NP)",
+              "meaning": "λz.((like john) z)",
+              "labels": [
+                ">B"
+              ],
+              "span": [
+                0,
+                2
+              ]
+            },
+            {
+              "id": "r.0.0",
+              "label": "(S/(S\\NP))",
+              "type": "(S/(S\\NP))",
+              "meaning": "λf.(f john)",
+              "labels": [
+                ">T"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            },
+            {
+              "id": "r.0.0.0",
+              "label": "NP",
+              "type": "NP",
+              "meaning": "john",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                0,
+                1
+              ]
+            },
+            {
+              "id": "r.0.1",
+              "label": "((S\\NP)/NP)",
+              "type": "((S\\NP)/NP)",
+              "meaning": "λo.λs.((like s) o)",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                1,
+                2
+              ]
+            },
+            {
+              "id": "r.1",
+              "label": "NP",
+              "type": "NP",
+              "meaning": "mary",
+              "labels": [
+                "lexical"
+              ],
+              "span": [
+                2,
+                3
+              ]
+            }
+          ],
+          "edges": [
+            {
+              "source": "r",
+              "target": "r.0",
+              "role": ">",
+              "order": 0
+            },
+            {
+              "source": "r.0",
+              "target": "r.0.0",
+              "role": ">B",
+              "order": 0
+            },
+            {
+              "source": "r.0.0",
+              "target": "r.0.0.0",
+              "role": ">T",
+              "order": 0
+            },
+            {
+              "source": "r.0",
+              "target": "r.0.1",
+              "role": ">B",
+              "order": 1
+            },
+            {
+              "source": "r",
+              "target": "r.1",
+              "role": ">",
+              "order": 1
+            }
+          ],
+          "metadata": {
+            "words": [
+              "john",
+              "likes",
+              "mary"
+            ],
+            "alignment": "Half-open native token spans"
+          }
+        }
+      ],
+      "available_structures": 1,
+      "omitted_structures": 0
+    }
+  ],
+  "projection": {
+    "preserves": [
+      "exported derivations: categories, normalized meaning strings, rules, token spans",
+      "recorded prefix chart summaries",
+      "retained alternative counts"
+    ],
+    "omits": [
+      "derivations after the first eight per prefix",
+      "non-full-span derivation trees",
+      "executable lambda-term objects"
+    ],
+    "selection": "First retained derivations in native chart order; no probability or ranking implied",
+    "verification": "Replayed each prefix against its recorded before/after chart state"
+  },
+  "scope": "Native symbolic trace and explicit encoding projection; not neural or human evidence"
+}
