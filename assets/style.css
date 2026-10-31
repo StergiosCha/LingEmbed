@@ -159,3 +159,9 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;paddin
 .ws-banner:hover{text-decoration:none;color:#fff}
 .ws-banner i{font-family:var(--serif);font-style:italic}
 .ws-tag{font:600 .68rem var(--mono);letter-spacing:.14em;text-transform:uppercase;background:var(--sym);color:#0a0f20;padding:2px 8px;border-radius:999px;margin-right:8px}
+
+/* powered by */
+.powered{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:.84rem;text-decoration:none}
+.powered:hover{color:var(--text);text-decoration:none}
+.powered img{height:20px;width:auto;opacity:.9}
+.powered b{font-weight:600;color:var(--text)}
